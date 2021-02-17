@@ -173,7 +173,7 @@ func (c *SpinClient) GetPipelineExecutionsWithRunningStage(pipelineExecutions []
 	for _, execution := range pipelineExecutions {
 		stages := execution.Stages
 		for _, stage := range stages {
-			if stage.RefID == c.sourceConfig.SpinnakerStage && stage.Status == "RUNNING" {
+			if stage.Type == "concourse" && stage.Status == "RUNNING" {
 				executions = append(executions, execution)
 			}
 		}
