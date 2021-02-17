@@ -51,7 +51,7 @@ func main() {
 
 	var stageId string
 	for _, stage := range metaData.Stages {
-		if stage.Type == "concourse" && stage.Status == "RUNNING" {
+		if stage.Type == "concourse" && spinnaker.InStatuses(stage.Status, request.Source.Statuses) {
 			stageId = stage.ID
 			break
 		}

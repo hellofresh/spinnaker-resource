@@ -173,13 +173,23 @@ func (c *SpinClient) GetPipelineExecutionsWithRunningStage(pipelineExecutions []
 	for _, execution := range pipelineExecutions {
 		stages := execution.Stages
 		for _, stage := range stages {
-			if stage.Type == "concourse" && stage.Status == "RUNNING" {
+			if stage.Type == "concourse" && InStatuses(stage.Status, c.sourceConfig.Statuses) {
 				executions = append(executions, execution)
 			}
 		}
 	}
 
 	return executions
+}
+
+func InStatuses(val string, statuses []string) bool {
+	for _, status := range statuses {
+		if val == status {
+			return true
+		}
+	}
+
+	return false
 }
 
 func (c *SpinClient) InvokePipelineExecution(body []byte) (PipelineExecution, error) {
