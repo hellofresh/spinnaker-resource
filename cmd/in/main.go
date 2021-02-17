@@ -8,8 +8,8 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/pivotal-cf/spinnaker-resource/concourse"
-	"github.com/pivotal-cf/spinnaker-resource/spinnaker"
+	"github.com/hellofresh/spinnaker-resource/concourse"
+	"github.com/hellofresh/spinnaker-resource/spinnaker"
 )
 
 func main() {
@@ -51,7 +51,7 @@ func main() {
 
 	var stageId string
 	for _, stage := range metaData.Stages {
-		if stage.Type == "concourse" {
+		if stage.Type == "concourse" && stage.Status == "RUNNING" {
 			stageId = stage.ID
 			break
 		}

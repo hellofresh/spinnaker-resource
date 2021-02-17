@@ -79,11 +79,11 @@ func TestIntegration(t *testing.T) {
 }
 
 var _ = SynchronizedBeforeSuite(func() []byte {
-	outBinPath, err := gexec.Build("github.com/pivotal-cf/spinnaker-resource/cmd/out")
+	outBinPath, err := gexec.Build("github.com/hellofresh/spinnaker-resource/cmd/out")
 	Expect(err).NotTo(HaveOccurred())
-	checkBinPath, err := gexec.Build("github.com/pivotal-cf/spinnaker-resource/cmd/check")
+	checkBinPath, err := gexec.Build("github.com/hellofresh/spinnaker-resource/cmd/check")
 	Expect(err).NotTo(HaveOccurred())
-	inBinPath, err := gexec.Build("github.com/pivotal-cf/spinnaker-resource/cmd/in")
+	inBinPath, err := gexec.Build("github.com/hellofresh/spinnaker-resource/cmd/in")
 	Expect(err).NotTo(HaveOccurred())
 
 	return []byte(outBinPath + "," + checkBinPath + "," + inBinPath)
