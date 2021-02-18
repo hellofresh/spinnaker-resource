@@ -14,4 +14,8 @@ type PipelineExecution struct {
 	Name      string `json:"name"`
 	BuildTime uint64 `json:"buildTime"`
 	Status    string `json:"status"`
+	Stages    []struct {
+		Status string `json:"status"`
+		Type   string `json:"type"`
+	}
 }

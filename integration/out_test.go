@@ -23,7 +23,7 @@ import (
 	"github.com/onsi/gomega/gexec"
 	"github.com/onsi/gomega/ghttp"
 
-	"github.com/pivotal-cf/spinnaker-resource/concourse"
+	"github.com/hellofresh/spinnaker-resource/concourse"
 )
 
 var _ = Describe("Out", func() {

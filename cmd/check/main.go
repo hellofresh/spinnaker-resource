@@ -12,8 +12,8 @@ package main
 import (
 	"sort"
 
-	"github.com/pivotal-cf/spinnaker-resource/concourse"
-	"github.com/pivotal-cf/spinnaker-resource/spinnaker"
+	"github.com/hellofresh/spinnaker-resource/concourse"
+	"github.com/hellofresh/spinnaker-resource/spinnaker"
 )
 
 func main() {
@@ -33,6 +33,8 @@ func main() {
 	pipelineExecutions := filterName(request.Source.SpinnakerPipeline, Data)
 
 	pipelineExecutions = filterStatus(request.Source.Statuses, pipelineExecutions)
+
+	pipelineExecutions = spinClient.GetPipelineExecutionsWithRunningStage(pipelineExecutions)
 
 	if len(pipelineExecutions) == 0 {
 		concourse.WriteResponse(concourse.CheckResponse{})

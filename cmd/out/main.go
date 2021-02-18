@@ -9,8 +9,8 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/pivotal-cf/spinnaker-resource/concourse"
-	"github.com/pivotal-cf/spinnaker-resource/spinnaker"
+	"github.com/hellofresh/spinnaker-resource/concourse"
+	"github.com/hellofresh/spinnaker-resource/spinnaker"
 )
 
 var spinClient spinnaker.SpinClient

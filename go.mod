@@ -1,4 +1,4 @@
-module github.com/pivotal-cf/spinnaker-resource
+module github.com/hellofresh/spinnaker-resource
 
 go 1.14
 

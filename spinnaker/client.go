@@ -19,7 +19,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/pivotal-cf/spinnaker-resource/concourse"
+	"github.com/hellofresh/spinnaker-resource/concourse"
 )
 
 type SpinClient struct {
@@ -164,6 +164,32 @@ func (c *SpinClient) GetPipelineExecutions() ([]PipelineExecution, error) {
 		}
 		return pipelineExecutions, nil
 	}
+}
+
+func (c *SpinClient) GetPipelineExecutionsWithRunningStage(pipelineExecutions []PipelineExecution) []PipelineExecution {
+
+	var executions []PipelineExecution
+
+	for _, execution := range pipelineExecutions {
+		stages := execution.Stages
+		for _, stage := range stages {
+			if stage.Type == "concourse" && InStatuses(stage.Status, c.sourceConfig.Statuses) {
+				executions = append(executions, execution)
+			}
+		}
+	}
+
+	return executions
+}
+
+func InStatuses(val string, statuses []string) bool {
+	for _, status := range statuses {
+		if val == status {
+			return true
+		}
+	}
+
+	return false
 }
 
 func (c *SpinClient) InvokePipelineExecution(body []byte) (PipelineExecution, error) {

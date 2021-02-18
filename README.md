@@ -1,10 +1,8 @@
 # Concourse Spinnaker Resource
 
-*This resource is under active development and is an alpha release*
-
 ## Features :
    - Trigger a Spinnaker pipeline with optional artifacts from Concourse.
-   - Trigger a Concourse job based on the status of a Spinnaker pipeline.
+   - Trigger a Concourse job based on the status of Concourse type stage of a Spinnaker pipeline.
 
 ## Source Configuration
 
@@ -13,8 +11,8 @@
 - `spinnaker_pipeline`: *Required* The Spinnaker pipeline you would like to trigger.
 - `spinnaker_x509_cert`: *Required* Client [certificate](https://www.spinnaker.io/setup/security/authentication/x509/) to authenticate with Spinnaker.
 - `spinnaker_x509_key`: *Required* Client [key](https://www.spinnaker.io/setup/security/authentication/x509/) to authenticate with Spinnaker.
-- `statuses`: *Optional* Array of Spinnaker pipeline execution statuses. Currently supported statuses by Spinnaker: [NOT_STARTED, RUNNING, PAUSED, SUSPENDED, SUCCEEDED, FAILED_CONTINUE, TERMINAL, CANCELED, REDIRECT, STOPPED, SKIPPED, BUFFERED] - [Reference](https://github.com/spinnaker/gate/blob/1cb00104f925e484d7a7a333bf07bd149adb0464/gate-web/src/main/groovy/com/netflix/spinnaker/gate/controllers/ExecutionsController.java#L82).
-   - if specified, the status will be used to filter the pipeline execution statuses when detecting new versions during the `check` step.
+- `statuses`: *Optional* Array of Spinnaker pipeline concourse stage statuses. Currently supported statuses by Spinnaker: [NOT_STARTED, RUNNING, PAUSED, SUSPENDED, SUCCEEDED, FAILED_CONTINUE, TERMINAL, CANCELED, REDIRECT, STOPPED, SKIPPED, BUFFERED] - [Reference](https://github.com/spinnaker/gate/blob/1cb00104f925e484d7a7a333bf07bd149adb0464/gate-web/src/main/groovy/com/netflix/spinnaker/gate/controllers/ExecutionsController.java#L82).
+   - if specified, the status will be used to filter the pipeline concourse stage execution statuses when detecting new versions during the `check` step.
    - if specified ,the `put` step will block until the specified status(es) is reached.
 - `statuses_check_timeout`: *Optional* The amount of time after which the `put` step will timeout waiting for the `statuses`. Default value will be `30m`.
 
