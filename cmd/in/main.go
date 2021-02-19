@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"sync"
 	"time"
 
 	"github.com/hellofresh/spinnaker-resource/concourse"
@@ -50,8 +51,12 @@ func main() {
 	}
 
 	var stageId string
+	var stageLock sync.RWMutex
 	for _, stage := range metaData.Stages {
-		if stage.Type == "concourse" && spinnaker.InStatuses(stage.Status, request.Source.Statuses) {
+		stageLock.Lock()
+		status := spinnaker.InStatuses(stage.Status, request.Source.Statuses)
+		stageLock.Unlock()
+		if stage.Type == "concourse" && status {
 			stageId = stage.ID
 			break
 		}
