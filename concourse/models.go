@@ -13,6 +13,7 @@ type Source struct {
 	SpinnakerAPI         string   `json:"spinnaker_api"`
 	SpinnakerApplication string   `json:"spinnaker_application"`
 	SpinnakerPipeline    string   `json:"spinnaker_pipeline"`
+	SpinnakerStage       string   `json:"spinnaker_stage"`
 	Statuses             []string `json:"statuses"`
 	StatusCheckTimeout   string   `json:"status_check_timeout"`
 	StatusCheckInterval  string   `json:"status_check_interval"`
